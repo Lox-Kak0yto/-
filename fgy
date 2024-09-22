@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+long long fact(int num) {
+    long long res = 1;
+    for (int j = 1; j <= num; j++) {
+        res *= j;
+    }
+    return res;
+}
+
+long long derange(int num) {
+    if (num == 0) return 1; // !0 = 1
+    if (num == 1) return 0; // !1 = 0
+
+    long long d = 0;
+    for (int j = 0; j <= num; j++) {
+        d += (j % 2 == 0 ? 1 : -1) * fact(num) / fact(j);
+    }
+    return d;
+}
+
+int main() {
+    int letters;
+    printf("有多少个字母？");
+    scanf("%d", &letters);
+
+    long long outcome = derange(letters);
+    printf("方式数量: %lld\n", outcome);
+
+    return 0;
+}
